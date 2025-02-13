@@ -1,33 +1,33 @@
 # Web Oscilloscope
 
-A web-based oscilloscope that displays real-time data broadcasted via HTTP POST requests.  
-This application uses:
-
-- **Flask** to receive incoming data,
-- **Bokeh** to display an interactive, real-time oscilloscope,
-- **Nginx** as a reverse proxy to route requests from a single public port,
-- **Containerized** for easy deployment to the cloud (e.g., via Azure Web App for Containers).
-
-Users can publish data to this oscilloscope and view the real-time graph via a web browser anywhere.
+Web Oscilloscope is a containerized, real-time oscilloscope built with Flask, Bokeh, and Nginx that enables users to publish live data and view it from anywhere on the internet.
 
 ![Web Oscilloscope](./demo.gif)
+
+---
+
+## Overview
+
+Web Oscilloscope provides a web-based interface for visualizing real-time data. Data is broadcasted via HTTP POST requests to a Flask API and then displayed in a continuously updating oscilloscope powered by Bokeh.
 
 ---
 
 ## Features
 
 - **Real-Time Visualization:**  
-  Uses [Bokeh](https://bokeh.org/) to render a continuously updating oscilloscope.
+  Renders a continuously updating oscilloscope using [Bokeh](https://bokeh.org/).
+
 - **Data Ingestion API:**  
-  A [Flask](https://flask.palletsprojects.com/) endpoint receives data via HTTP POST requests.
+  Receives data via HTTP POST requests using [Flask](https://flask.palletsprojects.com/).
+
 - **Persistent Data Storage:**  
-  A capped global deque stores incoming data points for persistent plotting.
+  Uses a capped global deque to store recent data points for consistent plotting for different sessions.
+
 - **Reverse Proxy with Nginx:**  
-  Routes requests to the correct backend (Bokeh or Flask) while exposing a single public port.
-- **Containerized Deployment:**  
-  Dockerized for seamless deployment to cloud services like Azure.
-- **Cloud Ready:**  
-  Easily deployed on Azure Web App for Containers by pushing the image to a registry and configuring environment variables.
+  Routes incoming requests to the appropriate backend (Bokeh or Flask) while exposing a single public port.
+
+- **Containerized & Cloud-Ready:**  
+  Fully Dockerized for seamless deployment, e.g., via Azure Web App for Containers.
 
 ---
 
@@ -35,14 +35,14 @@ Users can publish data to this oscilloscope and view the real-time graph via a w
 
 ```bash
 .
-├── Dockerfile        # Docker build instructions
-├── README.md         # This documentation file
-├── nginx.conf        # Nginx configuration for reverse proxying
-├── oscilloscope.py   # Main application (Flask + Bokeh server)
-├── requirements.txt  # Python dependencies list
-├── send_data.py      # Utility script to simulate sending data
-├── start.sh          # Startup script to launch the app and Nginx
-└── venv              # (Optional) Local virtual environment folder
+├── Dockerfile          # Docker build instructions
+├── README.md           # Project documentation
+├── nginx.conf          # Nginx configuration for reverse proxying
+├── oscilloscope.py     # Main application (Flask + Bokeh server)
+├── requirements.txt    # Python dependencies list
+├── send_data.py        # Script to simulate sending data
+├── start.sh            # Startup script for launching the app and Nginx
+└── venv                # (Optional) Local virtual environment folder
 ```
 
 ---
