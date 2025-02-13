@@ -28,7 +28,7 @@ def main():
             y = random.uniform(-100, 100)
             send_data(x, y, args.url)
             x += 1
-            time.sleep(1)
+            time.sleep(0.2)
             
     except KeyboardInterrupt:
         print("\nStopping data transmission...")
