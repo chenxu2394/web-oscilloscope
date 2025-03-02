@@ -19,13 +19,18 @@ def main():
     parser = argparse.ArgumentParser(description='Send data to oscilloscope server')
     parser.add_argument('--url', default='https://osc-e6agfvf6echyekav.canadacentral-01.azurewebsites.net/data',
                       help='URL of the oscilloscope server')
+    parser.add_argument('--mean', type=float, default=0,
+                      help='Mean of the Gaussian distribution (default: 0)')
+    parser.add_argument('--std', type=float, default=20,
+                      help='Standard deviation of the Gaussian distribution (default: 20)')
     args = parser.parse_args()
     
     print(f"Starting data transmission to {args.url}...")
+    print(f"Using Gaussian distribution with mean={args.mean}, std={args.std}")
     x = 0
     try:
         while True:
-            y = random.uniform(-100, 100)
+            y = random.gauss(args.mean, args.std)
             send_data(x, y, args.url)
             x += 1
             time.sleep(0.2)
